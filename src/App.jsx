@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+const App = () => {
+  function checkGuess() {
+    let guess = document.getElementById("my-guess").value;
+    let num = Math.floor(Math.random() * 101);
 
-function App() {
-  const [count, setCount] = useState(0)
+    if (guess > num + 10) {
+      document.getElementById("answer").innerHTML = "ALOT LOWER";
+    } else if (guess > num) {
+      document.getElementById("answer").innerHTML = "A LITTLE LOWER";
+    } else if (guess < num - 10) {
+      document.getElementById("answer").innerHTML = "ALOT HIGHER";
+    } else if (guess < num) {
+      document.getElementById("answer").innerHTML = "A LITTLE HIGHER";
+    } else if (guess === num) {
+      document.getElementById("answer").innerHTML = "CORRECT";
+    }
+  }
 
   return (
-    <>
+    <div>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+        <h1>Guessing Game</h1>
+        <h2>Guess which number I'm thinking of between 0 and 100?</h2>
+        <input type="number" id="my-guess" min={0} max={100} />
+        <button onClick={checkGuess}>Am I Right?</button>
 
-export default App
+        <br />
+        <h1 id="answer"></h1>
+        <br />
+      </div>
+    </div>
+  );
+};
+
+export default App;
